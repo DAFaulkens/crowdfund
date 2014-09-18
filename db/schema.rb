@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917204248) do
+ActiveRecord::Schema.define(version: 20140918222642) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20140917204248) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "team_members"
+    t.string   "image_file_name"
   end
 
 end

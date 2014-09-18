@@ -13,6 +13,8 @@ describe "Creating a new project" do
     fill_in 'Website', with: "www.projectname.org"
     fill_in 'Target pledge amount', with: "80000"
     select (Time.now.year - 1).to_s, from: "project_pledging_ends_on_1i"
+    fill_in 'Team members', with: "The Team Members"
+    fill_in 'Image file name', with: "project.png"
 
     click_button 'Create Project'
 

@@ -8,6 +8,7 @@
   <% @projects.each do |project| %>
     <header>
       <h1><%= link_to project.name, project %></h1>
+      <%= image_for(project) %>
     </header>
 
     <h3><%= project.website %></h3>
@@ -27,6 +28,10 @@
           <%= pledging_duration(project) %> 
           <strong>(<%= project.pledging_ends_on %>)</strong>
         </td>
+      </tr>
+      <tr>
+        <th>Team Members:</th>
+        <td><%= project.team_members %></td>
       </tr>
     </table>
   <% end %>
