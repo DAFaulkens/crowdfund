@@ -2,13 +2,11 @@
   <h1><%= pluralize(@projects.size, 'Project') %></h1>
 </header>
 
-<%= link_to "Add New Project", new_project_path %>
-
-<article>
+<article class="project">
   <% @projects.each do |project| %>
     <header>
-      <h1><%= link_to project.name, project %></h1>
       <%= image_for(project) %>
+      <h1><%= link_to project.name, project %></h1>
     </header>
 
     <h3><%= project.website %></h3>
