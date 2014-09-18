@@ -5,3 +5,35 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Project.create!([
+  {
+    name: "Save the Whales", 
+    description: "Save the whales and other endangered marine mammals!", 
+    website: "www.savethewhales.org", 
+    target_pledge_amount: 40000.00, 
+    pledging_ends_on: '2015-01-01'
+  }, 
+  {
+    name: "Save the Forests", 
+    description: "Stop the deforestation of earth before it's too late", 
+    website: "www.savetheforests.org", 
+    target_pledge_amount: 200000.00, 
+    pledging_ends_on: '2015-12-31'
+  }, 
+  {
+    name: "Save the Planet", 
+    description: "Gaia is in trouble! We need to help her ASAP!!!", 
+    website: "www.savetheplanet.org", 
+    target_pledge_amount: 8000000.00,
+    pledging_ends_on: '2012-12-21'
+  }, 
+  { 
+    name: "Rome is Burning..",
+    description: "We're in serious trouble guys...",
+    website: "www.romeisburning.org", 
+    target_pledge_amount: 32000.00, 
+    pledging_ends_on: 40.days.from_now
+  }
+])
