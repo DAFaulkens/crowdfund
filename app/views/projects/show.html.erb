@@ -14,5 +14,7 @@
 </p>
 
 <nav>
-  <%= link_to "All Projects", projects_path %>
+  <%= link_to "All Projects", projects_path %> || 
+  <%= link_to "Edit", edit_project_path(@project) %> ||
+  <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 </nav>
