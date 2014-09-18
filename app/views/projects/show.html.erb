@@ -7,5 +7,12 @@
 <h3>Target Pledge Amount:</h3>
 <p><%= number_to_currency(@project.target_pledge_amount) %></p>
 
-<h3>Pledging End Date:</h3>
-<p><%= @project.pledging_ends_on %></p>
+<h3>Pledging Duration:</h3>
+<p>
+  <%= pledging_duration(@project) %>
+  <strong>(<%= @project.pledging_ends_on %>)</strong>
+</p>
+
+<nav>
+  <%= link_to "All Projects", projects_path %>
+</nav>

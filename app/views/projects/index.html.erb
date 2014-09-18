@@ -5,9 +5,10 @@
 <article>
   <% @projects.each do |project| %>
     <header>
-      <h1><%= project.name %></h1>
-      <h3><%= project.website %></h3>
+      <h1><%= link_to project.name, project %></h1>
     </header>
+
+    <h3><%= project.website %></h3>
 
     <table>
       <tr>
@@ -19,8 +20,11 @@
         <td><%= number_to_currency(project.target_pledge_amount) %></td>
       </tr>
       <tr>
-        <th>Pledging End Date:</th>
-        <td><%= project.pledging_ends_on %></td>
+        <th>Pledging Duration:</th>
+        <td>
+          <%= pledging_duration(project) %> 
+          <strong>(<%= project.pledging_ends_on %>)</strong>
+        </td>
       </tr>
     </table>
   <% end %>
