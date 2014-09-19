@@ -10,7 +10,7 @@ describe "Creating a new project" do
 
     fill_in 'Name', with: "Project Name"
     fill_in 'Description', with: "Project Description"
-    fill_in 'Website', with: "www.projectname.org"
+    fill_in 'Website', with: "http://www.projectname.org"
     fill_in 'Target pledge amount', with: "80000"
     select (Time.now.year - 1).to_s, from: "project_pledging_ends_on_1i"
     fill_in 'Team members', with: "The Team Members"
@@ -20,5 +20,15 @@ describe "Creating a new project" do
 
     expect(current_path).to eq(project_path(Project.last))
     expect(page).to have_text("Project Name")
+  end
+
+  it "does not save the project if it's invalid" do
+    visit new_project_url
+
+    expect {
+      click_button 'Create Project'
+    }.not_to change(Project, :count)
+
+    expect(page).to have_text('error')
   end
 end

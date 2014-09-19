@@ -1,4 +1,5 @@
 <%= form_for @project do |f| %>
+  <%= render 'shared/errors', object: @project %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, size: 40 %>
