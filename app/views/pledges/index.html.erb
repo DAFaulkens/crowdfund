@@ -1,0 +1,16 @@
+<header>
+  <h1><%= pluralize(@pledges.size, 'Pledge') %> for <%= link_to @project.name, @project %></h1>
+</header>
+
+<ul>
+  <% @pledges.each do |pledge| %>
+    <li>
+      <p>
+        <%= pledge.name %> (<%= pledge.email %>): 
+      </p>
+      <p>&quot;<%= pledge.comment %>&quot;</p>
+      <p><strong>Amount: <%= number_to_currency(pledge.amount) %></strong></p>
+    </li>
+  <% end %>
+</ul>
+

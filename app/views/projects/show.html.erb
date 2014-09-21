@@ -1,6 +1,8 @@
 <h1><%= @project.name %></h1>
 <%= image_for(@project) %>
 <h2><%= @project.website %></h2>
+<h2><%= link_to "Pledges", project_pledges_path(@project) %></h2>
+
 
 <h3>Description:</h3>
 <p><%= @project.description %></p>
@@ -17,7 +19,9 @@
 <h3>Team Members:</h3>
 <p><%= @project.team_members %></p>
 
+
 <nav>
+  <%= link_to "Pledge!", new_project_pledge_path(@project) %> ||
   <%= link_to "Edit", edit_project_path(@project) %> ||
   <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 </nav>
