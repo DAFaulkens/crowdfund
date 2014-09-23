@@ -28,4 +28,16 @@ class Project < ActiveRecord::Base
   def self.major
     where("target_pledge_amount > ?", 100000).order("pledging_ends_on ASC")
   end
+
+  def total_amount_pledged
+    pledges.sum(:amount)
+  end
+
+  def amount_outstanding
+    target_pledge_amount - total_amount_pledged
+  end
+
+  def funded?
+    amount_outstanding <= 0
+  end
 end

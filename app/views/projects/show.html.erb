@@ -19,9 +19,12 @@
 <h3>Team Members:</h3>
 <p><%= @project.team_members %></p>
 
+<%= pledge_link_for(@project) %>
 
-<nav>
-  <%= link_to "Pledge!", new_project_pledge_path(@project) %> ||
-  <%= link_to "Edit", edit_project_path(@project) %> ||
-  <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
-</nav>
+<footer>
+<br />
+  <nav>
+    <%= link_to "Edit", edit_project_path(@project) %> ||
+    <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </nav>
+</footer>

@@ -31,4 +31,24 @@ describe "Viewing an individual project" do
 
     expect(page).to have_text("All Done!")
   end
+
+  it "shows the amount outstanding if the project is not funded" do
+    project = Project.create(project_attributes(target_pledge_amount: 50.00))
+    project.pledges.create(pledge_attributes(amount: 25.00))
+
+    visit project_url(project)
+
+    expect(page).to have_link("Only $25.00 left!")
+    expect(page).to have_link("Pledge!")
+    expect(page).not_to have_text("Funded!")
+  end
+
+  it "shows 'Funded' without a pledge link if the project is funded" do
+    project = Project.create(project_attributes(target_pledge_amount: 25.00))
+    project.pledges.create(pledge_attributes(amount: 25.00))
+
+    visit project_url(project)
+    expect(page).to have_text("Funded!")
+    expect(page).not_to have_link("Pledge!")
+  end
 end
