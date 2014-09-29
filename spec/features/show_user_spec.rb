@@ -4,6 +4,7 @@ describe "Showing an individual user" do
   
   it "shows the user's profile page" do
     user = User.create!(user_attributes)
+    sign_in(user)
 
     visit user_url(user)
     

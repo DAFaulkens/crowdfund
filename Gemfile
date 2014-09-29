@@ -16,7 +16,7 @@ gem 'bootstrap-sass', '3.2.0.0'
 
 group :test, :development do 
   gem "minitest"
-  gem "rspec-rails", "2.13.1"
+  gem "rspec-rails", "2.14.1"
 end
 
 group :test do
