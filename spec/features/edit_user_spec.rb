@@ -6,7 +6,7 @@ describe "Editing a user" do
     user = User.create!(user_attributes)
     
     visit user_url(user)
-    click_link 'Edit'
+    click_link 'Edit Account'
 
     expect(current_path).to eq(edit_user_path(user))
     expect(find_field('Username').value).to eq(user.username)

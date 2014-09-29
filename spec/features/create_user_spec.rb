@@ -16,6 +16,8 @@ describe "Creating a user" do
     click_button 'Create Account'
 
     expect(current_path).to eq(user_path(User.last))
+    expect(page).not_to have_link('Sign In')
+    expect(page).not_to have_link('Sign Up')
   end
 
   it "does not create the user with invalid data" do
@@ -26,4 +28,5 @@ describe "Creating a user" do
 
     expect(page).to have_text('error')
   end
+
 end
