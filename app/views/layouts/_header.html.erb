@@ -1,3 +1,12 @@
-<header id="page-header">
-  <h1>CrowdFund</h1>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Crowdfund", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav pull-right">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Sign In", '#' %></li>
+        <li><%= link_to "Sign Up", signup_path %></li>
+      </ul>
+    </nav>
+  </div>
 </header>

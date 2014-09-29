@@ -1,12 +1,12 @@
 <header>
-  <h1><%= pluralize(@projects.size, 'Project') %></h1>
+  <h1>Projects</h1>
 </header>
 
 <article class="project">
   <% @projects.each do |project| %>
     <header>
       <%= image_for(project) %>
-      <h1><%= link_to project.name, project %></h1>
+      <h2><%= link_to project.name, project %></h2>
     </header>
 
     <h3><%= project.website %></h3>

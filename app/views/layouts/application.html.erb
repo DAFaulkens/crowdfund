@@ -8,10 +8,12 @@
 </head>
 <body>
   <%= render 'layouts/header' %>
-  <%= render 'layouts/flashes' %>
   <%= render 'layouts/sidebar' %>
 
-<%= yield %>
+  <div class="container">
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+  </div>
 
   <%= render 'layouts/footer' %>
 

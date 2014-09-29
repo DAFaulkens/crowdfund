@@ -1,0 +1,114 @@
+@import "bootstrap-sprockets"; 
+@import "bootstrap";
+@import "colors"; 
+
+/* universal */
+
+html { 
+  overflow-y: scroll; 
+}
+
+body { 
+  padding-top: 50px; 
+} 
+
+section { 
+  overflow: auto; 
+} 
+
+textarea { 
+  resize: vertical; 
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #777;
+}
+
+h3 {
+  margin-top: 10px;
+  font-size: 1.5em; 
+  font-weight: 300;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+#logo {
+  float: left; 
+  margin-right: 10px; 
+  font-size: 1.7em; 
+  color: #fff; 
+  text-transform: uppercase; 
+  letter-spacing: -1px; 
+  padding-top: 9px; 
+  font-weight: bold; 
+  &:hover { 
+    color: #fff; 
+    text-decoration: none; 
+  }
+}
+
+/* sidebar */
+
+aside#sidebar { 
+  float: right; 
+  padding-right: 160px;
+  margin-top: 80px; 
+  width: 400px;
+
+  nav ul li {
+    border-radius: 10px;
+    border: 1px solid #ecf0f1;
+    margin: 0;
+    padding: 2px 0; 
+  }
+}
+
+/* footer */
+
+footer#page-footer {
+  padding: 5px; 
+  text-align: center; 
+  color: $primary-color; 
+  background: $secondary-color; 
+  margin-top: 50px;
+}
+
+/* errors */
+
+section#errors { 
+  margin: 1em 0; 
+  padding: 1em; 
+  background: $errors-background-color; 
+  h2 { 
+    color: $errors-text-color; 
+    font-size: 1.25em; 
+  }
+
+  h3 {
+    font-size: 1em; 
+    margin: 0.5em 0; 
+    font-weight: bold; 
+  }
+}
+

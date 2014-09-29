@@ -1,0 +1,11 @@
+<header>
+  <h1><%= @user.username %></h1>
+</header>
+
+<h3><%= @user.name %></h3>
+<h4><%= @user.email %></h4>
+
+<nav>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Delete', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+</nav>
