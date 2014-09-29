@@ -21,10 +21,12 @@
 
 <%= pledge_link_for(@project) %>
 
-<footer>
-<br />
-  <nav>
-    <%= link_to "Edit", edit_project_path(@project) %> ||
-    <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </nav>
-</footer>
+<% if current_user_admin? %>
+  <footer>
+  <br />
+    <nav>
+      <%= link_to "Edit", edit_project_path(@project) %> ||
+      <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </nav>
+  </footer>
+<% end %>

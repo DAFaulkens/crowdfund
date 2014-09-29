@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Deleting a project" do
+  before do
+    admin = User.create!(user_attributes(admin: true))
+    sign_in(admin)
+  end
   
   it "destroys the project and shows the listing without the project" do
     project = Project.create!(project_attributes)

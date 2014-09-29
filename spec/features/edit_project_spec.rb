@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Editing a project" do
+  before do
+    admin = User.create!(user_attributes(admin: true))
+    sign_in(admin)
+  end
   
   it "updates the project and shows the project's updated details" do
     project = Project.create!(project_attributes)

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Creating a new project" do
+  before do
+    admin = User.create!(user_attributes(admin: true))
+    sign_in(admin)
+  end
   
   it "creates the project and shows the new project's details" do
     visit projects_url
