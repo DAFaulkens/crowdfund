@@ -1,9 +1,18 @@
 <h1><%= @project.name %></h1>
 <%= image_for(@project) %>
 <h2><%= @project.website %></h2>
+
+<% if current_user %>
+  <% unless @current_passion %>
+    <%= button_to 'Like', project_passions_path(@project) %>
+  <% else %>
+    <%= button_to 'Unlike', project_passion_path(@project, @current_passion), method: :delete %>
+  <% end %>
+<% end %>
+
+
 <h2><%= link_to "Pledges", project_pledges_path(@project) %></h2>
-
-
+<br />
 <h3>Description:</h3>
 <p><%= @project.description %></p>
 
@@ -29,4 +38,13 @@
       <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %>
     </nav>
   </footer>
+<% end %>
+
+<% if @supporters.any?  %>
+  <h4>Supporters</h4>
+  <ul>
+    <% @supporters.each do |supporter| %>    
+      <li><%= link_to supporter.name, supporter %></li>
+    <% end %>
+  </ul>
 <% end %>

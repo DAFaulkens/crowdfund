@@ -8,6 +8,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @supporters = @project.supporters
+
+    if current_user
+      @current_passion = current_user.passions.find_by(project_id: @project)
+    end
   end
 
   def edit

@@ -146,4 +146,16 @@ describe "A project" do
 
     expect(project.funded?).to eq(false)
   end
+
+  it "has supporters" do
+    project = Project.new(project_attributes)
+    supporter1 = User.new(user_attributes(username: "user", email: "user@example.com"))
+    supporter2 = User.new(user_attributes(username: "another", email: "another@example.com"))
+
+    project.passions.new(user: supporter1)
+    project.passions.new(user: supporter2)
+
+    expect(project.supporters).to include(supporter1)
+    expect(project.supporters).to include(supporter2)
+  end
 end

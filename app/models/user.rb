@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :pledges, dependent: :destroy
+  has_many :passions, dependent: :destroy
+  has_many :causes, through: :passions, source: :project
 
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true

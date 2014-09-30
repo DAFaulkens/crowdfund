@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'projects#index'
   resources :projects do
     resources :pledges
+    resources :passions
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

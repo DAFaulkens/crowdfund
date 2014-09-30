@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @pledges = @user.pledges
+    @causes = @user.causes
   end
 
   def new

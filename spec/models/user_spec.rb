@@ -121,6 +121,18 @@ describe "A User" do
     expect(user.pledges).to include(pledge1)
     expect(user.pledges).to include(pledge2)
   end
+
+  it "has causes" do
+    user = User.new(user_attributes)
+    project1 = Project.new(project_attributes(name: "Project A"))
+    project2 = Project.new(project_attributes(name: "Project B"))
+
+    user.passions.new(project: project1)
+    user.passions.new(project: project2)
+
+    expect(user.causes).to include(project1)
+    expect(user.causes).to include(project2)
+  end
 end
 
 

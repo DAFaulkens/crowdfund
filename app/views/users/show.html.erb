@@ -30,3 +30,12 @@
     <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
   </nav>
 <% end %>
+
+<% if @causes.any? %>
+  <h4>Causes</h4>
+  <ul>
+    <% @causes.each do |cause| %>
+      <li><%= link_to cause.name, cause %></li>
+    <% end %>
+  </ul>
+<% end %>

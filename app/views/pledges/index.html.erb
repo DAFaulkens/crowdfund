@@ -5,6 +5,7 @@
 <ul>
   <% @pledges.each do |pledge| %>
     <li>
+      <%= profile_image_for(pledge.user) %>
       <p><%= link_to pledge.user.name, pledge.user %></p>
       <p>&quot;<%= pledge.comment %>&quot;</p>
       <p><strong>Amount: <%= number_to_currency(pledge.amount) %></strong></p>
