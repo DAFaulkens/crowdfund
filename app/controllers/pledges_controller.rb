@@ -1,4 +1,5 @@
 class PledgesController < ApplicationController
+  before_action :require_signin
   before_action :set_project
 
   def index
@@ -11,6 +12,7 @@ class PledgesController < ApplicationController
 
   def create
     @pledge = @project.pledges.new(pledge_params)
+    @pledge.user = current_user
     if @pledge.save
       redirect_to project_pledges_path(@project), notice: "Thanks for pledging!"
     else
@@ -26,6 +28,6 @@ class PledgesController < ApplicationController
   end
 
   def pledge_params
-    params.require(:pledge).permit(:name, :email, :comment, :amount)
+    params.require(:pledge).permit(:comment, :amount)
   end
 end

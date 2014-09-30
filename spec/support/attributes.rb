@@ -11,8 +11,6 @@ end
 
 def pledge_attributes(overrides = {})
   {
-    name: "Example", 
-    email: "example@example.com", 
     comment: "Example Comment", 
     amount: 200.00
   }.merge(overrides)

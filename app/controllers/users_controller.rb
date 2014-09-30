@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @pledges = @user.pledges
   end
 
   def new

@@ -16,40 +16,6 @@ describe "A pledge" do
     expect(pledge.valid?).to eq(true)
   end
 
-  it "requires a name" do
-    pledge = Pledge.new(name: "")
-
-    pledge.valid? 
-    
-    expect(pledge.errors[:name].any?).to eq(true)
-  end
-
-  it "requires an email" do
-    pledge = Pledge.new(email: "")
-
-    pledge.valid?
-    
-    expect(pledge.errors[:email].any?).to eq(true)
-  end
-
-  it "accepts properly formatted emails" do
-    emails = %w[user@example.com USER@example.com first.last@example.com]
-    emails.each do |email|
-      pledge = Pledge.new(email: email)
-      pledge.valid?
-      expect(pledge.errors[:email].any?).to eq(false)
-    end
-  end
-
-  it "rejects improperly formatted emails" do
-    emails = %w[user user_at_example.com @example.]
-    emails.each do |email|
-      pledge = Pledge.new(email: email)
-      pledge.valid?
-      expect(pledge.errors[:email].any?).to eq(true)
-    end
-  end
-
   it "accepts valid amounts" do
     amounts = Pledge::AMOUNTS
     amounts.each do |amount|

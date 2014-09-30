@@ -5,9 +5,7 @@
 <ul>
   <% @pledges.each do |pledge| %>
     <li>
-      <p>
-        <%= pledge.name %> (<%= pledge.email %>): 
-      </p>
+      <p><%= link_to pledge.user.name, pledge.user %></p>
       <p>&quot;<%= pledge.comment %>&quot;</p>
       <p><strong>Amount: <%= number_to_currency(pledge.amount) %></strong></p>
     </li>

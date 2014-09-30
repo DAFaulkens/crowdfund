@@ -7,14 +7,6 @@
     <%= render 'shared/errors', object: @pledge %>
   </div>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, size: 40 %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, size: 40 %>
-  </p>
-  <p>
     <%= f.label :comment %><br />
     <%= f.text_area :comment, cols: 80, rows: 7 %>
   </p>

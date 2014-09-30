@@ -8,6 +8,21 @@
 
 <h3><%= @user.name %></h3>
 <h4><%= @user.email %></h4>
+<br />
+
+<% if @pledges.any? %>
+  <h4>Pledges</h4>
+  <ol>
+    <% @pledges.each do |pledge| %>
+      <li>
+        <p><%= link_to pledge.project.name, pledge.project %></p>
+        <p>&quot;<%= pledge.comment %>&quot;</p>
+        <p><%= number_to_currency(pledge.amount) %></p>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
+<br />
 
 <% if current_user?(@user) %>
   <nav>

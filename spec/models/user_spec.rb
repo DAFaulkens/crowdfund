@@ -104,6 +104,23 @@ describe "A User" do
 
     expect(user.password_digest.present?).to eq(true)
   end
+
+  it "has reviews" do
+    user = User.new(user_attributes)
+    project1 = Project.new(project_attributes(name: "Project A"))
+    project2 = Project.new(project_attributes(name: "Project B"))
+
+    pledge1 = project1.pledges.new(comment: "Let's do it!", amount: 200.00)
+    pledge1.user = user
+    pledge1.save!
+
+    pledge2 = project2.pledges.new(comment: "Yes to this!", amount: 100.00)
+    pledge2.user = user
+    pledge2.save!
+
+    expect(user.pledges).to include(pledge1)
+    expect(user.pledges).to include(pledge2)
+  end
 end
 
 
