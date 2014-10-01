@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_many :pledges, dependent: :destroy
   has_many :passions, dependent: :destroy
   has_many :supporters, through: :passions, source: :user
+  has_many :characterizations, dependent: :destroy
+  has_many :categories, through: :characterizations
 
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 500 }

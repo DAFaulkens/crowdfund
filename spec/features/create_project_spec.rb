@@ -4,6 +4,9 @@ describe "Creating a new project" do
   before do
     admin = User.create!(user_attributes(admin: true))
     sign_in(admin)
+    @category1 = Category.create!(name: "Category 1")
+    @category2 = Category.create!(name: "Category 2")
+    @category3 = Category.create!(name: "Category 3")
   end
   
   it "creates the project and shows the new project's details" do
@@ -19,11 +22,16 @@ describe "Creating a new project" do
     select (Time.now.year - 1).to_s, from: "project_pledging_ends_on_1i"
     fill_in 'Team members', with: "The Team Members"
     fill_in 'Image file name', with: "project.png"
+    check @category1.name
+    check @category2.name
 
     click_button 'Create Project'
 
     expect(current_path).to eq(project_path(Project.last))
     expect(page).to have_text("Project Name")
+    expect(page).to have_text(@category1.name)
+    expect(page).to have_text(@category2.name)
+    expect(page).not_to have_text(@category3.name)
   end
 
   it "does not save the project if it's invalid" do

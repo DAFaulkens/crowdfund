@@ -40,11 +40,20 @@
   </footer>
 <% end %>
 
-<% if @supporters.any?  %>
+<% if @supporters.any? %>
   <h4>Supporters</h4>
   <ul>
     <% @supporters.each do |supporter| %>    
       <li><%= link_to supporter.name, supporter %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @categories.any? %>
+  <h4>Categories</h4>
+  <ul>
+    <% @categories.each do |category| %>
+      <li><%= category.name %></li>
     <% end %>
   </ul>
 <% end %>

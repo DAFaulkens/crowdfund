@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def show
     @supporters = @project.supporters
+    @categories = @project.categories
 
     if current_user
       @current_passion = current_user.passions.find_by(project_id: @project)
@@ -52,7 +53,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :website, :target_pledge_amount, :pledging_ends_on)
+    params.require(:project).permit(:name, :description, :website, :target_pledge_amount, :pledging_ends_on, category_ids: [])
   end
 
 end
