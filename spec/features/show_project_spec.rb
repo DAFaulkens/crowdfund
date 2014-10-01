@@ -76,4 +76,12 @@ describe "Viewing an individual project" do
 
     expect(page).to have_title("Crowdfund - #{project.name}")
   end
+
+  it "has an SEO-friendly URL" do
+    project = Project.create!(project_attributes(name: "Save Woodstock"))
+
+    visit project_url(project)
+
+    expect(current_path).to eq("/projects/save-woodstock")
+  end
 end

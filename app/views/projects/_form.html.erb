@@ -29,8 +29,16 @@
     <%= f.text_field :image_file_name %>
   </p>
   <p>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
   </p>
+  
+  <% unless @project.new_record? %>
+    <p>
+      <%= f.label :slug %><br />
+      <%= f.text_field :slug, size: 40 %>
+    </p>
+  <% end %>
+
   <p>
     <%= f.submit %> | 
     <%= link_to "Cancel", projects_path %>

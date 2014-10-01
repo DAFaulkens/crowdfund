@@ -12,11 +12,11 @@ describe "Editing a user" do
     expect(current_path).to eq(edit_user_path(user))
     expect(find_field('Username').value).to eq(user.username)
 
-    fill_in 'Username', with: "Updated User Name"
+    fill_in 'Name', with: "Updated Name"
     click_button 'Update Account'
 
     expect(current_path).to eq(user_path(user))
-    expect(page).to have_text("Updated User Name")
+    expect(page).to have_text("Updated Name")
   end
 
   it "does not update the user if it's invalid" do
@@ -24,7 +24,7 @@ describe "Editing a user" do
     
     sign_in(user)
     visit edit_user_url(user)
-    fill_in 'Username', with: ""
+    fill_in 'Name', with: ""
     click_button 'Update Account'
 
     expect(page).to have_text('error')

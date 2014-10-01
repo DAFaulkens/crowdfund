@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   has_many :characterizations, dependent: :destroy
   has_many :categories, through: :characterizations
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 500 }
   validates :target_pledge_amount, numericality: { greater_than: 0 }
 
@@ -19,11 +19,13 @@ class Project < ActiveRecord::Base
     with: /https?:\/\/[\S]+\b/i, 
     message: "must reference a valid URL"
   }
+  validates :slug, uniqueness: true
 
   scope :ongoing, -> { where("pledging_ends_on >= ?", Date.today).order("pledging_ends_on ASC") }
   scope :past, -> { where("pledging_ends_on < ?", Date.today).order("pledging_ends_on DESC") }
   scope :recently_added, ->(max=5) { order("created_at DESC").limit(max) }
-
+  
+  before_validation :generate_slug
 
   def expired?
     pledging_ends_on < Date.today
@@ -39,5 +41,13 @@ class Project < ActiveRecord::Base
 
   def funded?
     amount_outstanding <= 0
+  end
+
+  def to_param
+    slug
+  end
+
+  def generate_slug
+    self.slug ||= name.parameterize if name
   end
 end

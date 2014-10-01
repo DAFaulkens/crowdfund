@@ -161,8 +161,8 @@ describe "A project" do
 
   context "ongoing query" do
     it "returns projects with an end date in the future" do
-      project1 = Project.create!(project_attributes(pledging_ends_on: 3.months.ago))
-      project2 = Project.create!(project_attributes(pledging_ends_on: 3.months.from_now)) 
+      project1 = Project.create!(project_attributes(name: "Project A", pledging_ends_on: 3.months.ago))
+      project2 = Project.create!(project_attributes(name: "Project B", pledging_ends_on: 3.months.from_now)) 
 
       expect(Project.ongoing).to eq([project2])
     end
@@ -170,8 +170,8 @@ describe "A project" do
 
   context "past query" do
     it "returns a project with an end date in the past" do
-      project1 = Project.create!(project_attributes(pledging_ends_on: 3.months.ago))
-      project2 = Project.create!(project_attributes(pledging_ends_on: 3.months.from_now)) 
+      project1 = Project.create!(project_attributes(name: "Project A", pledging_ends_on: 3.months.ago))
+      project2 = Project.create!(project_attributes(name: "Project B", pledging_ends_on: 3.months.from_now)) 
 
       expect(Project.past).to eq([project1])
     end
@@ -179,12 +179,12 @@ describe "A project" do
 
   context "recently added query" do
     before do
-      @project1 = Project.create!(project_attributes(created_at: 3.months.ago))
-      @project2 = Project.create!(project_attributes(created_at: 2.months.ago))
-      @project3 = Project.create!(project_attributes(created_at: 1.months.ago))
-      @project4 = Project.create!(project_attributes(created_at: 1.week.ago))
-      @project5 = Project.create!(project_attributes(created_at: 1.day.ago))
-      @project6 = Project.create!(project_attributes(created_at: 1.hour.ago))
+      @project1 = Project.create!(project_attributes(name: "Project A", created_at: 3.months.ago))
+      @project2 = Project.create!(project_attributes(name: "Project B", created_at: 2.months.ago))
+      @project3 = Project.create!(project_attributes(name: "Project C", created_at: 1.months.ago))
+      @project4 = Project.create!(project_attributes(name: "Project D", created_at: 1.week.ago))
+      @project5 = Project.create!(project_attributes(name: "Project E", created_at: 1.day.ago))
+      @project6 = Project.create!(project_attributes(name: "Project F", created_at: 1.hour.ago))
     end
 
     it "returns a specified number of newly added projects ordered with the most recent first" do
@@ -194,5 +194,29 @@ describe "A project" do
     it "returns a default of 5 recently added projects ordered with the most recent project first" do
       expect(Project.recently_added).to eq([@project6, @project5, @project4, @project3, @project2])
     end
+  end
+
+  it "generates a slug when it's created" do
+    project = Project.create!(project_attributes(name: "Save Woodstock"))
+
+    expect(project.slug).to eq("save-woodstock")
+  end
+
+  it "requires a unique name" do
+    project1 = Project.create!(project_attributes)
+    project2 = Project.new(name: project1.name)
+
+    project2.valid?
+    
+    expect(project2.errors[:name].first).to eq("has already been taken")
+  end
+
+  it "requires a unique slug" do
+    project1 = Project.create!(project_attributes)
+    project2 = Project.new(slug: project1.slug)
+
+    project2.valid?
+    
+    expect(project2.errors[:slug].first).to eq("has already been taken")
   end
 end

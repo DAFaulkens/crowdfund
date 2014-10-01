@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001002437) do
+ActiveRecord::Schema.define(version: 20141001200023) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141001002437) do
     t.datetime "updated_at"
     t.string   "team_members"
     t.string   "image_file_name"
+    t.string   "slug"
   end
 
   create_table "users", force: true do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20141001002437) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",           default: false
+    t.string   "slug"
   end
 
 end

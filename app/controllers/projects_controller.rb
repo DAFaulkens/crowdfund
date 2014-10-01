@@ -56,11 +56,11 @@ class ProjectsController < ApplicationController
   private 
 
   def find_project
-    @project = Project.find(params[:id])
+    @project = Project.find_by!(slug: params[:id])
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :website, :target_pledge_amount, :pledging_ends_on, category_ids: [])
+    params.require(:project).permit(:name, :description, :website, :target_pledge_amount, :pledging_ends_on, :slug, category_ids: [])
   end
 
 end
