@@ -20,17 +20,13 @@ class Project < ActiveRecord::Base
     message: "must reference a valid URL"
   }
 
+  scope :ongoing, -> { where("pledging_ends_on >= ?", Date.today).order("pledging_ends_on ASC") }
+  scope :past, -> { where("pledging_ends_on < ?", Date.today).order("pledging_ends_on DESC") }
+  scope :recently_added, ->(max=5) { order("created_at DESC").limit(max) }
+
 
   def expired?
     pledging_ends_on < Date.today
-  end
-
-  def self.ongoing
-    where("pledging_ends_on >= ?", Date.today).order("pledging_ends_on ASC")
-  end
-
-  def self.major
-    where("target_pledge_amount > ?", 100000).order("pledging_ends_on ASC")
   end
 
   def total_amount_pledged

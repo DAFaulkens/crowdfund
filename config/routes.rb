@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   resources :users
 
+  get 'projects/:scope' => "projects#index", constraints: { scope: /past|recently_added/}, as: :filtered_projects
   root 'projects#index'
   resources :projects do
     resources :pledges

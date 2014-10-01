@@ -21,15 +21,19 @@
         <td><%= number_to_currency(project.target_pledge_amount) %></td>
       </tr>
       <tr>
+        <th>Team Members:</th>
+        <td><%= project.team_members %></td>
+      </tr>
+      <tr>
+        <th>Start Date:</th>
+        <td><%= project.created_at %></td>
+      </tr>
+      <tr>
         <th>Pledging Duration:</th>
         <td>
           <%= pledging_duration(project) %> 
-          <strong>(<%= project.pledging_ends_on %>)</strong>
+          <strong> (Ends <%= project.pledging_ends_on %>)</strong>
         </td>
-      </tr>
-      <tr>
-        <th>Team Members:</th>
-        <td><%= project.team_members %></td>
       </tr>
     </table>
   <% end %>

@@ -4,7 +4,14 @@ class ProjectsController < ApplicationController
   before_action :find_project, except: [:index, :new, :create]
 
   def index
-    @projects = Project.ongoing
+    case params[:scope]
+    when "past"
+      @projects = Project.past
+    when "recently_added"
+      @projects = Project.recently_added
+    else
+      @projects = Project.ongoing
+    end
   end
 
   def show

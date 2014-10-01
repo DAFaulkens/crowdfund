@@ -8,7 +8,7 @@ describe "Navigating projects" do
 
     visit project_url(project)
 
-    click_link "All Projects"
+    click_link "Ongoing Projects"
 
     expect(current_path).to eq(projects_path)
   end
