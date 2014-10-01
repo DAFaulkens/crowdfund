@@ -1,3 +1,4 @@
+<% content_for :title, @user.username %>
 <header>
   <h1><%= @user.username %></h1>
 </header>
@@ -31,11 +32,13 @@
   </nav>
 <% end %>
 
-<% if @causes.any? %>
-  <h4>Causes</h4>
-  <ul>
-    <% @causes.each do |cause| %>
-      <li><%= link_to cause.name, cause %></li>
-    <% end %>
-  </ul>
+<% content_for :side do %>
+  <% if @causes.any? %>
+    <h4>Causes</h4>
+    <ul>
+      <% @causes.each do |cause| %>
+        <li><%= link_to cause.name, cause %></li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>

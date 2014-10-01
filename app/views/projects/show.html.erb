@@ -1,3 +1,4 @@
+<% content_for :title, @project.name %>
 <h1><%= @project.name %></h1>
 <%= image_for(@project) %>
 <h2><%= @project.website %></h2>
@@ -40,20 +41,22 @@
   </footer>
 <% end %>
 
-<% if @supporters.any? %>
-  <h4>Supporters</h4>
-  <ul>
-    <% @supporters.each do |supporter| %>    
-      <li><%= link_to supporter.name, supporter %></li>
-    <% end %>
-  </ul>
-<% end %>
+<% content_for :side do %>
+  <% if @supporters.any? %>
+    <h4>Supporters</h4>
+    <ul>
+      <% @supporters.each do |supporter| %>    
+        <li><%= link_to supporter.name, supporter %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<% if @categories.any? %>
-  <h4>Categories</h4>
-  <ul>
-    <% @categories.each do |category| %>
-      <li><%= category.name %></li>
-    <% end %>
-  </ul>
+  <% if @categories.any? %>
+    <h4>Categories</h4>
+    <ul>
+      <% @categories.each do |category| %>
+        <li><%= category.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>

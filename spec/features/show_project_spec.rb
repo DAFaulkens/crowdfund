@@ -51,4 +51,29 @@ describe "Viewing an individual project" do
     expect(page).to have_text("Funded!")
     expect(page).not_to have_link("Pledge!")
   end
+
+  it "shows the project's supporters and categories in the sidebar" do
+    project = Project.create!(project_attributes)
+
+    user = User.create!(user_attributes)
+    project.supporters << user
+
+    category = Category.create!(name: "International")
+    project.categories << category
+
+    visit project_url(project)
+
+    within("aside#sidebar") do
+      expect(page).to have_text(user.name)
+      expect(page).to have_text(category.name)
+    end
+  end
+
+  it "includes the project's title in the page title" do
+    project = Project.create!(project_attributes)
+
+    visit project_url(project)
+
+    expect(page).to have_title("Crowdfund - #{project.name}")
+  end
 end
